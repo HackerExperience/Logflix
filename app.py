@@ -1,24 +1,19 @@
-from PySide.QtGui import QApplication
 import sys
+
+from PySide.QtGui import QApplication
+
 import cache
-from mainwindow import MainWindow
-from apps.requests.requests import Request
+from logs.requests import Log
 from signals import Signals
-from services.user import ServiceUser
-from websocket import ws
+from logs.consumer import consumer, stop_consumer
 
 
-cache.register('main', MainWindow)
-cache.register('request', Request)
-cache.register('user', ServiceUser)
+cache.register('request', Log)
 cache.register('signals', Signals)
-cache.ws = ws
-
-
-def main():
-    app = QApplication(sys.argv)
-    cache.call('main').show()
-    app.exec_()
+cache.consumer = consumer
 
 if __name__ == '__main__':
-    main()
+    app = QApplication(sys.argv)
+    cache.call('request').show()
+    app.exec_()
+    stop_consumer()

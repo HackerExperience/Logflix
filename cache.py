@@ -1,9 +1,8 @@
 __cached__ = {}
-__requests__ = {}
-__pending_requests__ = []
-__waiting_requests__ = []
-ws = None
-
+__logs__ = {}
+__list__ = []
+consumer = None
+con = None
 
 def call(name):
 
