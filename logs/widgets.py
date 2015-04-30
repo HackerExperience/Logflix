@@ -18,7 +18,7 @@ class LogRecv(QTextEdit):
 
     @slut(str, str)
     def on_received(self, log, request_id):
-        self.append(log)
+        self.append(log + '\n\n')
 
     def update(self, log, request_id):
         cache.call('signals').request_recv.emit(log, request_id)
